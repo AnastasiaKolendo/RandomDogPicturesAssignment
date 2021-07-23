@@ -1,5 +1,6 @@
 module.exports = {
     entry: [
+      'babel-polyfill',
       './client/index.js'
     ],
     output: {
@@ -20,6 +21,7 @@ module.exports = {
           }
         },
         {
+          test: /\.css$/,
           use: [
              'style-loader',
              'css-loader',

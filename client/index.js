@@ -1,3 +1,4 @@
+import "../public/style.css"
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Route, BrowserRouter } from "react-router-dom";
