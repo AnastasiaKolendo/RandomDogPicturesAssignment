@@ -18,7 +18,13 @@ module.exports = {
               '@babel/preset-react'
             ]
           }
-        }
+        },
+        {
+          use: [
+             'style-loader',
+             'css-loader',
+          ]
+       }
       ]
     }
   }
