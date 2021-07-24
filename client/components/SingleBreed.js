@@ -32,7 +32,7 @@ export default class SingleBreed extends React.Component {
     const breed = this.props.location.params.dog.slice(0, 1).toUpperCase() + this.props.location.params.dog.slice(1);
 
     return !pictures || pictures.length === 0 ? (
-      <h1>No Picture Available</h1>
+      <h1>Loading...</h1>
     ) : (
       <div>
         <h1>{breed}</h1>

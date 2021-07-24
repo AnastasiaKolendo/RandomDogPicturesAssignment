@@ -6,9 +6,9 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dogs: {},
+      breeds: {},
       stringToMatch: '',
-      filteredObj: {}
+      filteredBreeds: {}
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,30 +24,31 @@ export default class Home extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let str = this.state.stringToMatch.slice();
 
-    let filteredDogs = Object.keys(this.state.dogs);
+    let enteredBreeds = this.state.stringToMatch.slice().toLowerCase().split(',').join(' ').split(' ').filter(function (i) { return i });
+    const copyBreeds = Object.assign(this.state.breeds);
+    const newFilteredBreeds = {};
 
-    let newObj = {};
-    for (let i = 0; i < filteredDogs.length; i++) {
-      if (str.indexOf(filteredDogs[i]) >= 0) {
-        newObj[filteredDogs[i]] = this.state.dogs[filteredDogs[i]]
-      }
+    if (enteredBreeds.length === 0) {
+      this.setState({ filteredBreeds: copyBreeds });
+    } else {
+      enteredBreeds.forEach(breed => {
+        if (this.state.breeds[breed]) {
+          newFilteredBreeds[breed] = this.state.breeds[breed];
+        }
+      })
+      this.setState({ filteredBreeds: newFilteredBreeds });
     }
-
-    this.setState({ filteredObj: newObj })
-
   }
-
 
   async componentDidMount() {
     try {
       const res = await axios.get("https://dog.ceo/api/breeds/list/all");
-      const dogs = res.data;
+      const breeds = res.data;
 
       this.setState({
-        dogs: dogs.message,
-        filteredObj: dogs.message
+        breeds: breeds.message,
+        filteredBreeds: breeds.message
       });
     } catch (err) {
       console.error(err.message);
@@ -55,14 +56,15 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const dogs = this.state.filteredObj;
-    return !dogs || dogs.length === 0 ? (
-      <h1>No Dogs Available</h1>
+    const breeds = this.state.filteredBreeds;
+
+    return !breeds || breeds.length === 0 ? (
+      <h1>Loading...</h1>
     ) : (
       <div>
-        <h1>All Dogs: </h1>
+        <h1>List All Breeds: </h1>
         <ul>
-          {Object.keys(dogs).map((dog, index) => {
+          {Object.keys(breeds).map((breed, index) => {
             return (
               <div key={index}>
                 <li>
@@ -70,12 +72,12 @@ export default class Home extends React.Component {
                     <h3><Link to={{
                       pathname: "/single_breed",
                       params: {
-                        dog
+                        dog: breed
                       },
-                    }} >{dog}</Link></h3>
-                    {dogs[dog].length > 0 ? (
-                      <span>: {dogs[dog].map((subBreed, index) => {
-                        if (index !== dogs[dog].length - 1) {
+                    }} >{breed}</Link></h3>
+                    {breeds[breed].length > 0 ? (
+                      <span>: {breeds[breed].map((subBreed, index) => {
+                        if (index !== breeds[breed].length - 1) {
                           return (
                             subBreed + ', '
                           )
