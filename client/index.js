@@ -1,13 +1,12 @@
 import "../public/style.css"
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Route, BrowserRouter } from "react-router-dom";
-import Home from "./components/Home";
-
+import { BrowserRouter } from "react-router-dom";
+import Routes from './components/Routes'
 
 ReactDOM.render(
     <BrowserRouter>
-        <Route path="/home" component={Home} />
+        <Routes />
     </BrowserRouter>,
     document.getElementById('app') 
   );
