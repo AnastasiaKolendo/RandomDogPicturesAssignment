@@ -65,9 +65,6 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.2.2",
     "history": "^4.9.0",
-    "jsonwebtoken": "^8.5.1",
-    "material-design-icons": "^3.0.1",
-    "morgan": "^1.9.1",
-    "node": "^14.16.0"
+    "morgan": "^1.9.1"
   }
 }
