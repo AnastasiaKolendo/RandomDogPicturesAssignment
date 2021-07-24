@@ -40,8 +40,8 @@ export default class SingleBreed extends React.Component {
           {pictures.map((picture, index) => {
             return (
               <div key={index}>
-                <ol>
-                  <div>
+                <ol className='row'>
+                  <div className='column'>
                     <img src={picture} alt="image" />
                   </div>
                 </ol>

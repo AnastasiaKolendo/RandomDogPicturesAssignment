@@ -61,8 +61,8 @@ export default class Home extends React.Component {
     return !breeds || breeds.length === 0 ? (
       <h1>Loading...</h1>
     ) : (
-      <div>
-        <h1>List All Breeds: </h1>
+      <div className="cotainer">
+        <h1 id="name">List All Breeds: </h1>
         <ul>
           {Object.keys(breeds).map((breed, index) => {
             return (
