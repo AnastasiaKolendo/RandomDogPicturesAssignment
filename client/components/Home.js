@@ -100,13 +100,13 @@ export default class Home extends React.Component {
         </ul>
         <div>
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="name">Enter dogs breeds to filter:</label>
+            <label htmlFor="name">Enter dog's breeds to filter or nothing to see the whole list: </label>
             <input id="name" name="stringToMatch" type="text" required
               onChange={this.handleChange}
               value={this.stringToMatch}
             />
             <button type="button" onClick={this.handleSubmit}>
-              filter
+              Filter
             </button>
           </form>
         </div>
