@@ -25,7 +25,7 @@ export default class Home extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    let enteredBreeds = this.state.stringToMatch.slice().toLowerCase().split(',').join(' ').split(' ').filter(function (i) { return i });
+    const enteredBreeds = this.state.stringToMatch.slice().toLowerCase().split(',').join(' ').split(' ').filter(function (i) { return i });
     const copyBreeds = Object.assign(this.state.breeds);
     const newFilteredBreeds = {};
 
@@ -72,7 +72,7 @@ export default class Home extends React.Component {
                     <h3><Link to={{
                       pathname: "/single_breed",
                       params: {
-                        dog: breed
+                        breed: breed
                       },
                     }} >{breed}</Link></h3>
                     {breeds[breed].length > 0 ? (

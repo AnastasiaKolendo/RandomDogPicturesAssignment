@@ -30,13 +30,14 @@ export default class SingleBreed extends React.Component {
       for (let i = 0; i < 4; i++) {
         try {
 
-          const breed = this.props.location.params.dog;
+          const breed = this.props.location.params.breed;
 
           window.localStorage.setItem('breed', JSON.stringify(breed));
 
           this.setState({
             breed: breed
           })
+
           const res = await axios.get(`https://dog.ceo/api/breed/${breed}/images/random`);
           copyPictures.push(res.data.message);
         } catch (err) {
@@ -47,14 +48,14 @@ export default class SingleBreed extends React.Component {
         this.setState({
           pictures: copyPictures
         })
-      } 
+      }
     }
   }
 
   render() {
     const breed = this.state.breed.slice(0, 1).toUpperCase() + this.state.breed.slice(1);
     const pictures = this.state.pictures;
-    
+
     return !pictures || pictures.length === 0 ? (
       <h1>Loading...</h1>
     ) : (
